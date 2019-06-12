@@ -16,8 +16,9 @@ public class LoomUtil : MonoBehaviour
     }
 
     private Queue<Action> actions = new Queue<Action>(5);
+
     /// <summary>
-    /// 添加action
+    /// 添加action，该方法通常由子线程调用
     /// </summary>
     /// <param name="action"></param>
     public void EnqueueAction(Action action)
@@ -25,6 +26,9 @@ public class LoomUtil : MonoBehaviour
         actions.Enqueue(action);
     }
 
+    /// <summary>
+    /// 在Update中执行action
+    /// </summary>
     private void Update()
     {
         if (actions.Count > 0)
