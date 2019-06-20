@@ -15,6 +15,7 @@ public class LoomUtil : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
+    //存储待执行函数的队列
     private Queue<Action> actions = new Queue<Action>(5);
 
     /// <summary>
@@ -27,7 +28,7 @@ public class LoomUtil : MonoBehaviour
     }
 
     /// <summary>
-    /// 在Update中执行action
+    /// 在Update中执行action，由主线程调用
     /// </summary>
     private void Update()
     {
