@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MinoFramework
+namespace MinosFramework
 {
     /// <summary>
     /// 事件管理

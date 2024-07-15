@@ -1,4 +1,4 @@
-﻿namespace MinoFramework
+﻿namespace MinosFramework
 {
     /// <summary>
     /// 事件枚举

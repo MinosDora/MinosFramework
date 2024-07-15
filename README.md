@@ -1,1 +1,1 @@
-# MinoFramework
+# MinosFramework
