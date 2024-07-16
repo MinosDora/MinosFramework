@@ -6,10 +6,10 @@ namespace MinosFramework
     /// <summary>
     /// 事件管理
     /// </summary>
-    public class EventMgr
+    public class EventManager
     {
-        public static readonly EventMgr Instance = new EventMgr();
-        private EventMgr() { }
+        public static readonly EventManager Instance = new EventManager();
+        private EventManager() { }
 
         /// <summary>
         /// 存放事件列表的集合

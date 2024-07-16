@@ -1,10 +1,10 @@
 ﻿using System;
-using MinoFramework;
+using MinosFramework;
 using UnityEngine;
 
-public class GameMain : MonoBehaviour
+public class GameEntrance : MonoBehaviour
 {
-    public static GameMain Instance;
+    public static GameEntrance Instance;
     private void Awake()
     {
         Instance = this;

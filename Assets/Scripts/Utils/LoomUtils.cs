@@ -5,9 +5,9 @@ using UnityEngine;
 /// <summary>
 /// 主线程执行工具类
 /// </summary>
-public class LoomUtil : MonoBehaviour
+public class LoomUtils : MonoBehaviour
 {
-    public static LoomUtil Instance;
+    public static LoomUtils Instance;
 
     private void Awake()
     {

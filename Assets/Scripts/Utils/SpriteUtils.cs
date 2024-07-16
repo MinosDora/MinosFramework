@@ -3,7 +3,7 @@
 /// <summary>
 /// Sprite工具类
 /// </summary>
-public static class SpriteUtil
+public static class SpriteUtils
 {
     /// <summary>
     /// 根据Texture2D创建Sprite
