@@ -1,6 +1,6 @@
 ﻿using System;
-using MinosFramework;
 using UnityEngine;
+using MinosFramework;
 
 public class GameEntrance : MonoBehaviour
 {
