@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using MinosFramework;
 
@@ -9,5 +10,10 @@ public class GameEntrance : MonoBehaviour
     {
         Instance = this;
         DontDestroyOnLoad(this);
+    }
+
+    private void Update()
+    {
+        
     }
 }
