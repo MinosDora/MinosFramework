@@ -14,6 +14,6 @@ public class GameEntrance : MonoBehaviour
 
     private void Update()
     {
-        
+        TimerManager.Instance.Tick();
     }
 }
