@@ -14,14 +14,14 @@ namespace MinosFramework
         /// <summary>
         /// 存放事件列表的集合
         /// </summary>
-        private Dictionary<EventTypes, Delegate> eventCollection = new Dictionary<EventTypes, Delegate>(Enum.GetNames(typeof(EventTypes)).Length);
+        private Dictionary<EventType, Delegate> eventCollection = new Dictionary<EventType, Delegate>(Enum.GetNames(typeof(EventType)).Length);
 
         /// <summary>
         /// 添加事件
         /// </summary>
         /// <param name="eventType">事件类型</param>
         /// <param name="action">委托实例</param>
-        public void AddListener(EventTypes eventType, Delegate action)
+        public void AddListener(EventType eventType, Delegate action)
         {
             eventCollection.TryGetValue(eventType, out Delegate eventValue);
             eventCollection[eventType] = Delegate.Combine(eventValue, action);
@@ -32,7 +32,7 @@ namespace MinosFramework
         /// </summary>
         /// <param name="eventType">事件类型</param>
         /// <param name="action">委托实例</param>
-        public void RemoveListener(EventTypes eventType, Delegate action)
+        public void RemoveListener(EventType eventType, Delegate action)
         {
             eventCollection.TryGetValue(eventType, out Delegate eventValue);
             eventCollection[eventType] = Delegate.Remove(eventValue, action);
@@ -43,7 +43,7 @@ namespace MinosFramework
         /// </summary>
         /// <param name="eventType">事件类型</param>
         /// <param name="args">参数列表</param>
-        public void TriggerEvent(EventTypes eventType, params object[] args)
+        public void TriggerEvent(EventType eventType, params object[] args)
         {
             eventCollection.TryGetValue(eventType, out Delegate eventValue);
             if (eventValue != null)
@@ -58,7 +58,7 @@ namespace MinosFramework
         /// <typeparam name="T">参数类型</typeparam>
         /// <param name="eventType">事件类型</param>
         /// <param name="arg">参数</param>
-        public void TriggerEvent<T>(EventTypes eventType, T arg)
+        public void TriggerEvent<T>(EventType eventType, T arg)
         {
             eventCollection.TryGetValue(eventType, out Delegate eventValue);
             if (eventValue != null)
@@ -82,7 +82,7 @@ namespace MinosFramework
         /// <param name="eventType">事件类型</param>
         /// <param name="arg1">参数1</param>
         /// <param name="arg2">参数2</param>
-        public void TriggerEvent<T1, T2>(EventTypes eventType, T1 arg1, T2 arg2)
+        public void TriggerEvent<T1, T2>(EventType eventType, T1 arg1, T2 arg2)
         {
             eventCollection.TryGetValue(eventType, out Delegate eventValue);
             if (eventValue != null)
