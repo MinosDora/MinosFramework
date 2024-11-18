@@ -97,5 +97,13 @@ namespace MinosFramework
                 }
             }
         }
+
+        /// <summary>
+        /// 清空事件列表
+        /// </summary>
+        public void Clear()
+        {
+            eventCollection.Clear();
+        }
     }
 }
