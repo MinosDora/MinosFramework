@@ -95,6 +95,17 @@ namespace MinosFramework
         }
 
         /// <summary>
+        /// 延迟执行事件
+        /// </summary>
+        /// <param name="action">事件</param>
+        /// <param name="delay">延迟时间</param>
+        /// <returns>计时器索引</returns>
+        public int DelayInvoke(Action action, float delay)
+        {
+            return DelayInvoke((Delegate)action, delay);
+        }
+
+        /// <summary>
         /// 重复执行事件
         /// </summary>
         /// <param name="action">事件</param>
@@ -108,6 +119,11 @@ namespace MinosFramework
             timerList.Add(timer);
             timerPQ.Enqueue(timerIndex, nextInvokeTime);
             return timerIndex;
+        }
+
+        public int RepeatInvoke(Action action, float interval)
+        {
+            return RepeatInvoke((Delegate)action, interval);
         }
 
         /// <summary>
