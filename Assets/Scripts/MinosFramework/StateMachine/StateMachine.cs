@@ -1,14 +1,29 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 
+/// <summary>
+/// 有限状态机
+/// </summary>
 public class StateMachine
 {
+    /// <summary>
+    /// 当前的状态
+    /// </summary>
     private State currentState;
+    /// <summary>
+    /// 当前的状态
+    /// </summary>
     public State CurrentState => currentState;
 
+    /// <summary>
+    /// 所有状态字典，key为状态名称，value为状态
+    /// </summary>
     private Dictionary<string, State> stateDict = new Dictionary<string, State>();
 
+    /// <summary>
+    /// 添加状态
+    /// </summary>
+    /// <typeparam name="T">状态类型</typeparam>
     public void AddState<T>() where T : State, new()
     {
         T state = new T();
@@ -20,6 +35,11 @@ public class StateMachine
         }
     }
 
+    /// <summary>
+    /// 获取状态
+    /// </summary>
+    /// <typeparam name="T">状态类型</typeparam>
+    /// <returns>状态</returns>
     private T GetState<T>() where T : State
     {
         foreach (var item in stateDict)
@@ -32,6 +52,11 @@ public class StateMachine
         return null;
     }
 
+    /// <summary>
+    /// 获取状态
+    /// </summary>
+    /// <param name="stateName">状态名称</param>
+    /// <returns></returns>
     private State GetState(string stateName)
     {
         if (stateDict.TryGetValue(stateName, out State state))
@@ -41,6 +66,10 @@ public class StateMachine
         return null;
     }
 
+    /// <summary>
+    /// 切换状态
+    /// </summary>
+    /// <typeparam name="T">状态类型</typeparam>
     public void ChangeState<T>() where T : State
     {
         State targetState = GetState<T>();
@@ -63,6 +92,10 @@ public class StateMachine
         UnityEngine.Debug.Log("" + currentState.StateName);
     }
 
+    /// <summary>
+    /// 切换状态
+    /// </summary>
+    /// <param name="targetStateName">状态名称</param>
     public void ChangeState(string targetStateName)
     {
         if (currentState != null && currentState.StateName == targetStateName)
@@ -84,6 +117,9 @@ public class StateMachine
         UnityEngine.Debug.Log("" + targetStateName);
     }
 
+    /// <summary>
+    /// 每帧执行
+    /// </summary>
     public void Tick()
     {
         if (currentState != null)
