@@ -13,7 +13,7 @@ public class StateMachine
     /// <summary>
     /// 当前的状态
     /// </summary>
-    public State CurrentState => currentState;
+    public virtual State CurrentState => currentState;
 
     /// <summary>
     /// 所有状态字典，key为状态名称，value为状态
@@ -70,7 +70,7 @@ public class StateMachine
     /// 切换状态
     /// </summary>
     /// <typeparam name="T">状态类型</typeparam>
-    public void ChangeState<T>() where T : State
+    public void ChangeState<T>(Object data = null) where T : State
     {
         State targetState = GetState<T>();
         if (targetState == null)
@@ -85,18 +85,18 @@ public class StateMachine
                 return;
             }
 
-            currentState.Exit();
+            currentState.Exit(targetState.StateName);
         }
+        targetState.Enter(currentState?.StateName ?? "", data);
         currentState = targetState;
-        currentState.Enter();
-        UnityEngine.Debug.Log("" + currentState.StateName);
+        UnityEngine.Debug.Log("" + targetState.StateName);
     }
 
     /// <summary>
     /// 切换状态
     /// </summary>
     /// <param name="targetStateName">状态名称</param>
-    public void ChangeState(string targetStateName)
+    public void ChangeState(string targetStateName, Object data = null)
     {
         if (currentState != null && currentState.StateName == targetStateName)
         {
@@ -110,10 +110,10 @@ public class StateMachine
 
         if (currentState != null)
         {
-            currentState.Exit();
+            currentState.Exit(targetStateName);
         }
+        targetState.Enter(currentState?.StateName ?? "", data);
         currentState = targetState;
-        currentState.Enter();
         UnityEngine.Debug.Log("" + targetStateName);
     }
 
@@ -126,5 +126,19 @@ public class StateMachine
         {
             currentState.Tick();
         }
+    }
+
+    /// <summary>
+    /// 清除状态机
+    /// </summary>
+    public void Clear()
+    {
+        if (currentState != null)
+        {
+            currentState.Exit();
+        }
+        currentState = null;
+
+        stateDict.Clear();
     }
 }

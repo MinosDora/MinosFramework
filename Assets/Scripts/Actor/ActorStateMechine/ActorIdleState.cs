@@ -1,25 +1,24 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
-public class ActorIdleState : State
+public class ActorIdleState : ActorState
 {
     public override string StateName => nameof(ActorIdleState);
 
-    public override void Enter()
+    public override void Enter(string fromStateName = "", Object data = null)
     {
 
     }
 
     public override void Tick()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if (UnityEngine.Input.GetKey(UnityEngine.KeyCode.Space))
         {
-            this.stateMachine.ChangeState<ActorJumpState>();
+            this.StateMachine.ChangeState<ActorJumpState>();
         }
     }
 
-    public override void Exit()
+    public override void Exit(string toStateName = "")
     {
 
     }

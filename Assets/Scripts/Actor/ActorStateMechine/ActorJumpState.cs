@@ -1,28 +1,27 @@
 using System;
 using System.Collections.Generic;
 using MinosFramework;
-using UnityEngine;
 
-public class ActorJumpState : State
+public class ActorJumpState : ActorState
 {
     public override string StateName => nameof(ActorJumpState);
 
     private int? jumTimerId;
 
-    public override void Enter()
+    public override void Enter(string fromStateName = "", Object data = null)
     {
         jumTimerId = TimerManager.Instance.DelayInvoke(OnJumpEnd, 2f);
     }
 
     public override void Tick()
     {
-        if (Input.GetKey(KeyCode.Escape))
+        if (UnityEngine.Input.GetKey(UnityEngine.KeyCode.Escape))
         {
-            this.stateMachine.ChangeState<ActorIdleState>();
+            this.StateMachine.ChangeState<ActorIdleState>("From Escape.");
         }
     }
 
-    public override void Exit()
+    public override void Exit(string toStateName = "")
     {
         if (jumTimerId != null)
         {
@@ -33,6 +32,6 @@ public class ActorJumpState : State
     public void OnJumpEnd()
     {
         jumTimerId = null;
-        this.stateMachine.ChangeState<ActorIdleState>();
+        this.StateMachine.ChangeState<ActorIdleState>();
     }
 }
